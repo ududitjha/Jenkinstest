@@ -1,0 +1,312 @@
+.dropdown{
+
+
+    height : 38px;
+    width: 102%;
+    margin-left: 32px;
+}
+
+.list-group {
+    margin-bottom: 20px;
+    padding-left: 0;
+}
+
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+}
+
+.btn-primary {
+    color: #ffffff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+    cursor: pointer;
+}
+.btn-success {
+    color: #ffffff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+
+
+
+
+/*
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+td,
+th {
+    padding: 0;
+}
+.table {
+    border-collapse: collapse !important;
+}
+.table td,
+.table th {
+    background-color: #fff !important;
+}
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #ddd !important;
+}
+table {
+    background-color: transparent;
+}
+
+th {
+    text-align: left;
+}
+.table {
+    width: 65%;
+    max-width: 100%;
+    margin-bottom: 42px;
+    float: right;
+    margin-top: -26px;
+}
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #dddddd;
+}
+.table > thead > tr > th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dddddd;
+}
+
+.table-bordered {
+    border: 1px solid #dddddd;
+}
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+    border: 1px solid #dddddd;
+}
+.table-bordered > thead > tr > th,
+.table-bordered > thead > tr > td {
+    border-bottom-width: 2px;
+}*/
+.removeBtn{
+    float: right;
+    clear: both;
+}
+
+
+.realperson-text
+{padding-top:5px}
+
+
+.form-input {float: left;margin-right: 5px}
+
+.send-otp-btn{
+    width:100%;
+    margin-bottom: 10px
+}
+
+#txtcodePhone{ width: 45%}
+
+#txtcodeEmail{width: 45%}
+
+
+.divSeal{
+
+    padding: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    color: #585858;
+}
+
+.homePageTbl{
+    width: 100%;
+    margin-top: 10px
+}
+
+.error{
+    border-color: red;
+
+}
+
+
+.fade.in {
+    opacity: 1;
+}
+
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.light{
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 350px;
+    margin-left: -150px;
+    margin-top: -100px;                 
+    padding: 10px;
+    z-index:1002;
+    overflow:visible;
+
+}
+
+
+#spanErrorMsg{
+    margin-bottom: 15px;
+    margin-top: 15px;
+    margin-left: 10px;
+    font-size: 16px;
+    color: #4c4c4c;
+}
+
+
+#fade{
+    display: none;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index:1001;
+    -moz-opacity: 0.7;
+    opacity:.70;
+    filter: alpha(opacity=70);
+}
+
+
+#divLoading{
+    height: 29px;
+    margin-top: -35px;
+    float: right;
+    position: absolute;
+    margin-left: 175px;
+}
+
+
+legend{
+    color: #484848;
+}
+
+fieldset.fieldset{
+    margin-bottom: 22px;
+}
+
+fieldset a{
+    color:#026db9;
+    text-decoration: none
+}
+
+input[type=text],input[type=password]{
+    margin-top: 5px;
+}
+
+.styleLabel{
+    color: #484848;
+    margin-left: -5px
+}
+
+.red{
+    color:red
+}
+
+.tblVerifyOTP{
+    display: none;width: 102%;
+}
+
+.tblVerifyOTP td:first-child
+{
+    width: 50%
+}
+
+.tblVerifyOTP td:first-child input{
+    width:90%
+}
+
+.tblVerifyOTP td:nth-child(2)
+{
+    width: 25%
+}
+
+
+.tblVerifyOTP td:nth-child(3)
+{
+    width: 30%
+}
+
+.editButton{
+    /*    border: 1px solid #ababab;*/
+    border:1px solid rgba(1, 123, 209, 0.23);
+    padding-left: 2px;
+    padding-right: 2px;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: rgba(1, 123, 209, 0.39);
+}
+
+.tickButton{
+    /*    border: 1px solid #ababab;*/
+    border:1px solid rgba(1, 123, 209, 0.23);
+    padding-left: 2px;
+    padding-right: 2px;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: rgba(1, 209, 5, 0.26);
+}
+
+#fadeLoader{
+    display: none;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index:1001;
+    -moz-opacity: 0.7;
+    opacity:.70;
+    filter: alpha(opacity=70);}
+
+.lightLoader{
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 350px;
+    margin-left: -50px;
+    margin-top: -100px;                 
+    padding: 10px;
+    z-index:1002;
+    overflow:visible;
+    /*                background: url('images/loader.gif') no-repeat ;*/
+}
+
+

@@ -1,0 +1,68 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="js/jquery-2.2.0.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            
+            function getQueryParams(key) {
+                var re=new RegExp('(?:\\?|&)'+key+'=(.*?)(?=&|$)','gi');
+                var r=[], m;
+                while ((m=re.exec(document.location.search)) != null) r[r.length]=m[1];
+                return r;
+            }
+            
+            
+            function logoutAll()
+            {
+                
+                
+                var tokenId = getQueryParams("token")[0];
+                
+                $.ajax({//SaveInLocalStorage("tokenId", data.tokenID);
+                    url:"http://accounts.staging.nkn.in:8080/Accounts" + "/openam/login/logoutAll?tokenId=" + tokenId,
+                    type:"GET",
+                    success: function(result,status,xhr) {
+                        console.log(result);
+                        var data = JSON.parse(result);
+                        
+                        console.log(data.list);
+                        
+                        
+                        $.each(data.list,function(i,val)
+                        {
+                            //location.href=val;
+                            
+                            $.ajax({//SaveInLocalStorage("tokenId", data.tokenID);
+                                url:val,
+                                type:"GET",
+                                success: function(result,status,xhr) {
+                                    console.log(result);
+            
+                                }      //success ends
+          
+                            }); 
+                            
+                            
+                            
+                        });  
+                    
+                    
+            
+                    }      //success ends
+          
+                }); 
+            }
+            
+            
+        </script>
+    </head>
+    <body onload="logoutAll()">
+        <div>TODO write content</div>
+    </body>
+</html>

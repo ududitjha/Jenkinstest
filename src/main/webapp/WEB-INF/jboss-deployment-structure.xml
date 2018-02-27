@@ -1,0 +1,12 @@
+<jboss-deployment-structure>
+    <deployment>
+        <exclusions>
+            <module name="javaee.api" />
+            <module name="javax.ws.rs.api"/>
+            <module name="org.jboss.resteasy.resteasy-jaxrs" />
+            <module name="org.apache.log4j" />
+        </exclusions>
+        <local-last value="true" />
+
+    </deployment>
+</jboss-deployment-structure>

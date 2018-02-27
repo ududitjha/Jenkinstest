@@ -1,0 +1,119 @@
+
+@charset "utf-8";
+/* Prateek Jain, Shounak Acharya, Amit Kumar (National Knowledge Network | National Informatics Centre) */
+body {
+	background-image: url(../images/bg.jpg);
+        
+	background-repeat: no-repeat;
+	background-position: center top;
+	background-size: 100% 100%;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	font-family:"Myriad Pro", "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+}
+#container { width:555px; margin:0 auto; border-radius:3px; -webkit-box-shadow: 3px 3px 3px 1px rgba(199,199,199,1);
+-moz-box-shadow: 3px 3px 3px 1px rgba(199,199,199,1);
+box-shadow: 3px 3px 3px 1px rgba(199,199,199,1); margin-top:3%; min-height:372px; background:#fbfbfb; padding-bottom:20px;}
+#logo { margin:0 auto; text-align:center; padding-top:10px; border:none;}
+#form { border: 1px solid #ccc;
+    background: #fbfbfb;
+    border-radius: 2px;
+    padding: 10px;
+    margin-top: 15px;
+    width: 450px;
+    margin: 0 auto;
+    border-radius: 3px;
+    -webkit-box-shadow: 3px 3px 3px 1px rgba(199,199,199,1);
+    -moz-box-shadow: 3px 3px 3px 1px rgba(199,199,199,1);
+    box-shadow: 3px 3px 3px 1px rgba(199,199,199,1);
+    min-height: 255px;
+/*     min-height: 152px;*/
+}
+.firstname { height:25px; border-radius:3px; border:1px solid #ccc; padding:5px; margin-left:30px; margin-top:30px;}
+.email {height:25px; border-radius:3px; border:1px solid #ccc; padding:5px; margin-left:30px; margin-top:15px;}
+.password {height:25px; border-radius:3px; border:1px solid #ccc; padding:5px; margin-left:30px;}
+
+.agreement {margin-left:30px; font-size:13px; font-weight:normal; text-decoration:none; margin-top:15px;}
+.agreement input {vertical-align: bottom;}
+.agreement span a{ color:#3a9ef2; text-decoration:none;}
+
+#signup {margin-left:30px; margin-top:15px; margin-bottom:30px;}
+.clear {clear:both;}
+#forget-pw { color:#007ee5; margin-left:365px; font-size:13px; margin-top:15px;}
+#forget-pw a {color:#007ee5; text-decoration:none;}
+#bottom-logos { width:60%; text-align:right; margin:0 auto; margin-top:20px; position: absolute;
+/*    bottom: 0;*/
+}
+#bottom-logos img {padding:10px; border:none;}
+
+/*SECOND PAGE*/
+
+#form-box { border:1px solid #ccc; background:#fbfbfb; box-shadow: 2px 2px 5px #888888; border-radius:3px; width: 400px; float:left; padding:12px; margin-top: 20px;}
+#nkn-logo {text-align:center; padding-top: 10px;}
+#forms {border: 1px solid #ccc;
+    background: #fbfbfb;
+    border-radius: 2px;
+    padding: 10px;
+    margin-top: 15px;
+    width: 450px;
+    margin: 0 auto;
+    border-radius: 3px;
+	-webkit-box-shadow: 3px 3px 3px 1px rgba(199,199,199,1);
+-moz-box-shadow: 3px 3px 3px 1px rgba(199,199,199,1);
+box-shadow: 3px 3px 3px 1px rgba(199,199,199,1);
+    min-height: 285px;
+	}
+#forms span a { font-size:13px; padding-top:10px; display:block; color:#017bd1; text-align:right; margin-right:5px; text-decoration:none; margin-left: 240px;}
+.form-input { width:96%; margin-bottom:5px; height:30px; padding:5px; border-radius:2px; border:1px solid #ccc; box-shadow: 2px 2px 4px #ccc; font-size:15px;}
+.submit-button { width:100%; padding:5px; height:40px; cursor:pointer; background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  -webkit-border-radius: 3;
+  -moz-border-radius: 3;
+  border-radius:3px; font-weight:bold; color:#ffffff; box-shadow:2px 2px 4px #ccc;}
+  
+.submit-button:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;}
+
+.input2 {height: 25px; border:1px solid #ccc; box-shadow: 2px 2px 4px #ccc; font-size:15px;  padding: 5px;    float: left; width: 50%;}
+.captcha img { border:1px solid #ccc; height:37px; margin-left:5px;}
+.captcha1 {width: 12px;    float: right;    margin-right: 25px;    margin-top: -35px;}
+
+/*Image Seal ROUND Circle ;) Yeah Prateek*/
+
+#loading {width: 100px;  height: 100px;  margin: 10px auto;  position: relative}
+.outer-shadow, .inner-shadow{  z-index: 4;  position: absolute;  width: 100%;  height: 100%;  border-radius: 100%;  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+.inner-shadow {top: 50%;  left: 50%;  width: 90px;  height: 90px;  margin-left: -45px;  margin-top: -45px;  border-radius: 100%;  background-color: #ffffff;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);}
+.inner-shadow img {border-radius: 50%; width: 90px;  height: 90px; margin-left: 0px; margin-top: 0px;} 
+.hold {  position: absolute;  width: 100%;  height: 100%;  clip: rect(0px, 100px, 100px, 50px);  border-radius: 100%; background-color: #fff;}
+.fill, .dot span {background-color: #65af1c;}
+.fill {position: absolute;  width: 100%;  height: 100%;  border-radius: 100%;  clip: rect(0px, 50px, 100px, 0px);}
+.left .fill {  z-index: 1;  -webkit-animation: left 1s linear ;  -moz-animation: left 1s linear ; animation: left 1s linear both;  }
+@keyframes left {0%{ -webkit-transform:rotate(0deg);}    
+				100%{transform:rotate(180deg);}}
+@-webkit-keyframes left {0%{-webkit-transform:rotate(0deg);}    
+						100%{-webkit-transform:rotate(180deg);}}
+.right {z-index: 3;  
+	-webkit-transform: rotate(180deg);  
+	-moz-transform: rotate(180deg); 
+	transform: rotate(180deg);}
+.right .fill {z-index: 3;  -webkit-animation: right 1s linear ;  -moz-animation: right 1s linear ;  animation: right 1s linear both ;  -webkit-animation-delay: 1s;  -moz-animation-delay: 1s;  animation-delay: 1s;}
+@keyframes right {0% {-webkit-transform:rotate(0deg);}    
+	100%{transform:rotate(180deg);}}
+@-webkit-keyframes right {0% {transform: rotate(0deg);}  
+	100% {transform: rotate(180deg);}}
+
+/*Image Seal ROUND Circle Close here. ;) Yeah Prateek*/

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<services>
+    
+    <service>
+        
+        <name>Storage</name>
+        <value>http://storage.staging.nkn.in:8080/Storage</value>
+        <domain>.staging.nkn.in</domain>
+        <!--  <value>http://storage.staging.nkn.in:8080/Storage</value>
+        <domain>.staging.nkn.in</domain>-->
+        <realm>users</realm>
+    </service>
+    
+    <service>
+        <name>Accounts</name>
+        <value>http://accounts.staging.nkn.in:8080/Accounts/NKN/homePage.html</value>
+        <!--<value>http://nknone.staging.nkn.in:8080/NKNOne/NKN/homePage.html</value>-->
+        <domain>.staging.nkn.in</domain>
+        <!--        <value>http://accounts.staging.nkn.in:8080/Accounts</value>
+        <domain>.staging.nkn.in</domain>-->
+        <realm>users</realm>
+    </service>
+        
+    <service>
+        <name>AndroidStorage</name>
+        <!--        <value>NonBrowser</value>
+        <domain>.nkn.in</domain>-->
+        <value>NonBrowser</value>
+        <domain>.staging.nkn.in</domain>
+        <realm>users</realm>
+    </service>
+    
+    <service>
+        <name>DesktopStorage</name>
+        <!--        <value>NonBrowser</value>
+        <domain>.nkn.in</domain>-->
+        <value>NonBrowser</value>
+        <domain>.staging.nkn.in</domain>
+        <realm>users</realm>
+    </service>
+    
+    <service>
+        <name>eSikshak</name>
+        <!--        <value>http://esikshak.nkn.in/eSikshak/users/HomePage.CourseHomePage</value>
+        <domain>.nkn.in</domain>-->
+        <value>http://esikshak.staging.nkn.in/eSikshak/users/HomePage.CourseHomePage</value>
+        <domain>.staging.nkn.in</domain>
+        <realm>users</realm>
+    </service>
+    
+    <service>
+        <name>perf</name>
+        <!--        <value>http://perf.nkn.in</value>
+        <domain>.nkn.in</domain>-->
+        <value>http://perf.staging.nkn.in</value>
+        <domain>.staging.nkn.in</domain>
+        <realm>users</realm>
+    </service>
+    
+    <service>
+        <name>perflocal</name>
+        <!--        <value>http://perf.nkn.in</value>
+        <domain>.nkn.in</domain>-->
+        <value>http://perf.local.nkn.in</value>
+        <domain>.local.nkn.in</domain>
+        <realm>users</realm>
+    </service>
+    
+    <service>
+        <name>osiradmin</name>
+        <!--        <value>http://osiradmin.nkn.in</value>
+        <domain>.nkn.in</domain>-->
+        <value>http://osiradmin.staging.nkn.in</value>
+        <domain>.staging.nkn.in</domain>
+        <realm>users</realm>
+    </service>
+</services>

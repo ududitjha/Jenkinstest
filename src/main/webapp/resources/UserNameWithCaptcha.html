@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>NKN ONE</title>
+        <link href="css/style.css" rel="stylesheet" type="text/css" />
+        <link href="images/favicon.ico" rel="shortcut" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.realperson.css"> 
+        <link rel="stylesheet" type="text/css" href="css/common.css"> 
+        <link href="css/styleNew.css" rel="stylesheet" type="text/css" />
+        <script src="js/jquery-2.2.0.min.js" type="text/javascript"></script>
+        <script src="js/validate.js" type="text/javascript"></script>
+        <script src="js/popup.js" type="text/javascript"></script>
+        <script src="js/common.js" type="text/javascript"></script>
+        <script src="js/default.js" type="text/javascript"></script>
+        <script type="text/javascript" src="js/jquery.plugin.js"></script> 
+        <script type="text/javascript" src="js/jquery.realperson.js"></script>
+        <script>
+
+            $(function () {
+                //alert("User Name does not Exist. Please enter valid User Name");
+                
+                //captcha
+                $("#defaultReal").realperson({length: 5});
+                
+                $('#disableReal').click(function() { 
+                    var disable = $(this).text() === 'Disable'; 
+                    $(this).text(disable ? 'Enable' : 'Disable'); 
+                    $('#defaultReal').realperson(disable ? 'disable' : 'enable'); 
+                });
+            });
+
+        </script>
+                <script>
+            $(window).load(function () {
+                history.pushState(null, null, document.URL);
+                window.addEventListener('popstate', function () {
+                    history.pushState(null, null, document.URL);
+                });
+            });
+        </script>
+
+        <style>
+
+            #forms1 { border:1px solid #ccc; background:#fbfbfb; border-radius:2px; padding:10px; margin-top: 15px;}
+
+        </style>
+    </head>
+    <body onload="setService();checkOnLoadParam();">
+
+        <div class="light" id="divErrorPopup">
+            <div id="forms1">
+                <div id="spanErrorMsg"></div>
+                <input type="button" class="submit-button" value="Ok" onClick="lightbox_close()" >
+
+            </div>
+
+        </div>
+        <div id="fade" onClick="lightbox_close();"></div> 
+
+        <div id="container">
+            <div id="logo"><a href="#"><img src="images/logo.jpg" alt="" /></a></div>
+            <div id="form">
+<input type="hidden" id="service" name="service" value=""/>
+                <input type="text" class="form-input" placeholder="username" id="username">
+                <input type="text" id="captcha" name="captcha" class="input2" autocomplete="off" placeholder="Captcha">
+                <div class="captcha">
+
+                    <input type="text" style="display: none" id="defaultReal" height="35" width="100"/>
+
+
+                    <input type="submit" class="submit-button" id="submit" onclick="submitUserWithCaptcha()">
+                    <img src="images/loader.gif" id="divLoading" style="display: none">
+                    <span><a href="#"  style="color: #007ee5; text-decoration: none">Need Help?</a></span>
+                </div>
+
+
+
+
+
+
+
+                <div class="clear"></div>
+
+            </div>
+        </div>
+        <div id="bottom-logos">
+            <a href="#"><img src="images/eoffice.jpg" alt="" /></a>
+            <a href="#"><img src="images/digital-india.jpg" alt="" /></a>
+            <a href="#"><img src="images/gov.jpg" alt="" /></a>
+        </div>
+
+
+
+
+
+
+
+
+
+        <!--        <div id="main-container">
+                    <div id="logo"><img src="images/logo.png" width="350" height="293" alt=""/></div>
+                    <div id="form-box">
+                        <div id="nkn-logo"><img src="images/nkn-logo.png" width="290" height="41" alt=""/></div>
+                        <div id="forms">
+                            <input type="text" class="form-input" placeholder="username" id="username">
+                            <input type="text" id="captcha" name="captcha" class="input2" autocomplete="off" placeholder="Captcha">
+                            <div class="captcha">
+        
+                                <input type="text" style="display: none" id="defaultReal" height="35" width="100">
+                                                    <div class="captcha"><img src="images/captcha.png" id="as_captcha" alt="Captcha" height="35" width="100"></div>
+                                                    <div class="captcha1"><a class="a" id="change_captcha" style="cursor:pointer;"><img src="images/recaptcha.png"></a></div>
+                                <input type="submit" class="submit-button" id="submit" onclick="submitUserWithCaptcha()">
+                                <img src="images/loader.gif" id="divLoading" style="display: none">
+                                <span><a href="#">Need Help?</a></span>
+                            </div>
+                        </div>
+                        <div id="clear"></div>
+                    </div>
+                </div>-->
+    </body>
+</html>

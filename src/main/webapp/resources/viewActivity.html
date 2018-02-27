@@ -1,0 +1,319 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>SETTINGS</title>
+<!--        <link rel="stylesheet" href="css/style.css">-->
+        <link rel="stylesheet" href="css/style1.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/setting-page.css">
+        <link rel="stylesheet" href="css/common.css">
+        <link rel="stylesheet" href="css/jquery-ui.css">
+
+
+        <script type="text/javascript" src="js/popup.js"></script>
+        <script src="js/jquery.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+        <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.js"></script>
+        <!--        <link rel="stylesheet" href="css/dataTables.bootstrap.min.css">
+                <script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>-->
+        <script src="js/jquery-ui.js"></script>
+        <script src="js/validate.js"></script>
+        <script src="js/bootstrap.js" type="text/javascript"></script>
+        <script src="js/common.js" type="text/javascript"></script>
+        <script src="js/default.js" type="text/javascript"></script>
+        <style>
+            #fadeLoader{
+                display: none;
+                position: fixed;
+                top: 0%;
+                left: 0%;
+                width: 100%;
+                height: 100%;
+                background-color: #000;
+                z-index:1001;
+                -moz-opacity: 0.7;
+                opacity:.70;
+                filter: alpha(opacity=70);}
+
+            .lightLoader{
+                display: none;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 350px;
+                margin-left: -150px;
+                margin-top: -100px;                 
+                padding: 10px;
+                z-index:1002;
+                overflow:visible;
+                /*                background: url('images/loader.gif') no-repeat ;*/
+            }
+            .ajax-loader {
+                visibility: hidden;
+                /*                background-color: rgba(255,255,255,0.7);
+                                position: absolute;
+                                z-index: +100 !important;
+                                width: 100%;
+                                height:100%;*/
+            }
+
+            .ajax-loader img {
+                position: relative;
+                /*                top:50%;
+                                left:50%;*/
+            }
+        </style>
+
+        <script>
+            /* Prateek Jain */
+            function myFunction() {
+                document.getElementById("myDropdown").classList.toggle("show");
+            }
+
+            $(document).ready(function(){
+                loadingImg();
+                listDevice();
+                activeSession();
+                // showBackupCode();
+                showPhoneBackupCode();
+                listRecentActivities();
+                userProfilePic();
+            });
+
+
+            // Close the dropdown if the user clicks outside of it
+            window.onclick = function(event) {
+                if (!event.target.matches('.dropbtn')) {
+
+                    var dropdowns = document.getElementsByClassName("dropdown-content");
+                    var i;
+                    for (i = 0; i < dropdowns.length; i++) {
+                        var openDropdown = dropdowns[i];
+                        if (openDropdown.classList.contains('show')) {
+                            openDropdown.classList.remove('show');
+                        }
+                    }
+                }
+            }
+        </script>
+
+    </head>
+
+    <body onload="checkOnLoadParam(true)">
+        <!--        <div id="imgLoader" style="display: none">
+                    <img src="images/loader.gif" />
+                </div>-->
+
+
+        <div class="lightLoader"  id="loader" onload="checkOnLoadParam(true)">
+            <img src="images/loader.gif" />
+
+        </div>
+        <div id="fadeLoader"></div> 
+
+        <div id="main">
+
+
+            <div class="light" id="divErrorPopup">
+                <div id="forms">
+                    <div id="spanErrorMsg"></div>
+                    <input type="button" class="submit-button" value="Ok" onClick="lightbox_close()" >
+
+                </div>
+
+            </div>
+            <div id="fade" onClick="lightbox_close();"></div> 
+
+
+
+            <div class="light" id="popUpRename">
+                <div id="forms">
+                    <a href="#" class="close" onClick="lightbox_close();"><img src="images/close.png" width="20" height="20" alt=""/></a>
+                    <input type="text" class="form-input" id="newName" placeholder="New Name">
+                    <input type="button" class="submit-button" value="Submit" onClick="renameDevice()" >
+
+                </div>
+
+            </div>
+            <div id="fade" onClick="lightbox_close();"></div> 
+            <!--LEFT PART/SECTION-->
+            <div id="main-left">
+                <div id="main-logo"><img src="images/setting-page-logo.png" width="166" height="63" alt=""/></div>
+                <ul>
+                    <li><a href="homePage.html">&#9733; Security Setting</a></li>
+                    <li><a href="viewActivity.html" class="active">&#9733; View Activity</a></li>
+                    <li><a href="alertSetting.html">&#9733; Alert Settings</a></li>
+                </ul> 
+            </div>
+            <!--LEFT PART/SECTION END-->
+
+            <!--RIGHT PART/SECTION-->
+            <div id="main-right">
+                <div id="main-right-header">
+                    <div id="main-user-seal"><img src="images/user.png" width="56" height="55" alt=""/>
+                    </div>
+                    <div id="name-desig">Amit Kumar <br>
+                        <span>Software Developer</span>
+                    </div>
+                    <!--DROPDOWN SETTING BUTTON-->
+                    <div id="main-setting-icon"><img src="images/setting-con.png" width="29" height="27" alt="" onmouseover="this.src='images/setting-con-hover.png'" onmouseout="this.src='images/setting-con.png'" border="0" onclick="myFunction()" class="dropbtn"/>
+
+                        <div class="dropdown">
+                            <div id="myDropdown" class="dropdown-content">
+                                <a href="#" onclick="logout()">Logout</a>
+                                <a href="#about">Accounts</a>
+                                
+                            </div>
+                        </div>
+                        <!--DROPDOWN SETTING BUTTON END-->
+                    </div>
+                </div>
+
+                <div id="main-right-content-section">
+                    <h1>View Activity</h1>
+                </div>
+
+
+                <!--COL-->
+                <div id="pannels-main-setting">
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">List Devices</a>
+                                </h4>
+
+                            </div>
+                            <!--                    <button type="button" onclick="listDevice()" class="btn-primary" id="deviceBtn">Show All Devices</button>-->
+                            <div id="collapse1" class="panel-collapse collapse">
+                                <div class="panel-body" style="display: none; max-height: 495px;overflow: auto;"  id="divDevices" >
+                                    <img id="imgLoaderDevices" src="images/loader.gif"/>
+                                    <button type="button" style="float: right;margin-bottom: 10px" class="btn btn-success" id="btnRemoveAllDevices" onclick="removeAllDevices()" >Remove All Devices</button>
+
+                                    <div id="divDevicesList"></div>
+                                    <!--                                    <table class="table table-bordered display table" id="listDevice" >-->
+                                    <!--                                        <thead>
+                                                                                <tr>
+                                                                                    <th>Name of the Device</th>
+                                                                                    <th>Rename</th>
+                                                                                    <th>Remove</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td>John</td>
+                                                                                    <td><button class="btn btn bg-primary">Rename</button></td>
+                                                                                    <td><button class="btn btn bg-danger">Remove</button></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>Mary</td>
+                                                                                    <td><button class="btn btn bg-primary">Rename</button></td>
+                                                                                    <td><button class="btn btn bg-danger">Remove</button></td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>July</td>
+                                                                                    <td><button class="btn btn bg-primary">Rename</button></td>
+                                                                                    <td><button class="btn btn bg-danger">Remove</button></td>
+                                                                                </tr>
+                                                                            </tbody>-->
+                                    <!--                                    </table>-->
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">List Active Sessions</a>
+                                </h4>
+
+                            </div>
+                            <div id="collapse2" class="panel-collapse collapse">
+                                <div class="panel-body" style="display: none;max-height: 495px;overflow: auto"  id="divSession">
+                                    <!--                                     <img id="imgLoaderSession" src="images/loader.gif"/>-->
+                                    <button type="button" style="float: right;margin-bottom: 10px" class="btn btn-success" id="btnRemoveAllSessions" onclick="removeAllSessions()" >Remove All Sessions</button>
+
+                                    <table class="table table-bordered" id="listSession">
+
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Generate Phone Backup Codes</a>
+                                </h4>
+
+                            </div>
+                            <div id="collapse3" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <img id="imgLoader" src="images/loader.gif" style="display: none"/>
+                                    <button onclick="generateBackupCode()" style="float: right;margin-bottom: 10px" class="btn btn-success" id="generateCodesBtn">Generate Codes</button>
+                                    <button style="float: right;margin-bottom: 10px;margin-right: 10px; display: none ;" class="btn btn-success" onclick="downloadphoneBackupCode()"  id="downloadBackupCodeButton">Download Backup Codes</button>
+
+                                    <div style="display: none"  id="divNoCodes"></div>
+                                    
+                                    <div style="display: none"  id="divPhoneCodes">
+
+
+                                        <table id="usedBackUpCode"  class="table table-bordered" style="width:50%" >
+                                            <!--                                            <thead>
+                                                                                            <tr>
+                                                                                                <th>Codes</th>
+                                            
+                                                                                            </tr>
+                                                                                        </thead>-->
+                                        </table>
+
+                                        <table id="UnUsedBackUpCode"  class="table table-bordered" style="width:50%" >
+                                            <!--                                            <thead>
+                                                                                            <tr>
+                                                                                                <th>Codes</th>
+                                            
+                                                                                            </tr>
+                                                                                        </thead>-->
+                                        </table>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">Recent Activities</a>
+                                </h4>
+
+                            </div>
+                            <!--                    <button type="button" onclick="listDevice()" class="btn-primary" id="deviceBtn">Show All Devices</button>-->
+                            <div id="collapse5" class="panel-collapse collapse">
+                                <div class="panel-body" style="display: none;max-height: 495px;overflow: auto"  id="divRecentActivities" >
+                                    <!--                                    <button type="button" style="float: right;margin-bottom: 10px" class="btn btn-success" id="btnRemoveAllDevices" onclick="removeAllDevices()" >Remove All Devices</button>-->
+                                    <table class="table table-bordered" id="recentActivities">
+
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--COL END-->
+
+                <div class="clear"></div>
+            </div>
+            <!--RIGHT PART/SECTION END-->
+            <div class="clear"></div>
+        </div>
+
+        <div id="main-setting-footer">Designed and Maintained by <a href="http://nkn.in" target="_blank">National Knowledge Network</a> | Powered by <a href="http://nic.in" target="_blank">National Informatics Centre</a></div>
+
+    </body>
+</html>

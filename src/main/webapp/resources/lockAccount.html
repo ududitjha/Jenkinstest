@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>NKN ONE</title>
+        <link href="css/style.css" rel="stylesheet" type="text/css" />
+        <link href="css/common.css" rel="stylesheet" type="text/css" />
+        <link href="images/favicon.ico" rel="shortcut" />
+        <script src="js/jquery-2.2.0.min.js" type="text/javascript"></script>
+        <script src="js/common.js" type="text/javascript"></script>
+        <script src="js/popup.js" type="text/javascript"></script>
+        <script src="js/validate.js" type="text/javascript"></script>
+        <script src="js/default.js" type="text/javascript"></script>
+
+        <script>
+            $(document).ready(function () {
+               
+//                if(LoadFromLocalStorage("OTPOnPhone"))
+//                    $("#divPhone").show();
+//                if (LoadFromLocalStorage("OTPOnEmail"))
+//                    $("#divEmail").show();
+//                
+//                if(LoadFromLocalStorage("currentCase").indexOf("twoStep") != -1 )
+//                    $(".remember").show();
+                        
+            });
+        </script>
+
+    </head>
+    <body>
+
+<!--
+        <div class="light" id="divErrorPopup">
+            <div id="forms">
+                <div id="spanErrorMsg"></div>
+                <input type="button" class="submit-button" value="Ok" onClick="lightbox_close()" >
+
+            </div>
+
+        </div>
+        <div id="fade" onClick="lightbox_close();"></div> -->
+
+        <div id="main-container">
+            <div id="logo">
+                <img src="images/logo.png" width="350" height="293" alt=""/>
+            </div>
+            <div id="form-box">
+                <div id="nkn-logo"><img src="images/nkn-logo.png" width="290" height="41" alt=""/></div>
+                <div id="forms">  	
+                    
+                    
+                    <a href="#" class="close" onClick="lightbox_close();"><img src="images/close.png" width="20" height="20" alt=""/></a>
+                <input type="text" class="form-input" id="txtOtp" placeholder="Enter OTP">
+                <input type="button" class="submit-button" value="Resend OTP" onClick="resendOtpLockAccount()" >
+                <input type="button" class="submit-button" value="Lock Account" onClick="LockAccount()" >
+
+      <div id="clear"></div>
+                   
+
+                  
+                    <img src="images/loader.gif" id="divLoading" style="display: none">
+                   
+                    <!--OTP EMAIL END-->
+                </div>
+            </div>
+            <div id="clear"></div>
+        </div>
+    </body>
+</html>

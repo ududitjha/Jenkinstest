@@ -1,0 +1,208 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>SETTINGS</title>
+        <link rel="stylesheet" href="css/style1.css">
+        <!--        <link href="css/profile-page.css" rel="stylesheet" type="text/css" />-->
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/setting-page.css">
+<!--        <link rel="stylesheet" href="css/style.css">-->
+
+
+
+        <link href="images/favicon.ico" rel="shortcut" />
+        <link href="css/common.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="css/jquery-ui.css">
+
+        <script type="text/javascript" src="js/popup.js"></script>
+        <script src="js/jquery-1.10.2.js"></script>
+        <script src="js/jquery-ui.js"></script>
+        <script src="js/validate.js"></script>
+        <script src="js/common.js"></script>
+        <script src="js/default.js"></script>
+
+
+
+
+        <script>
+            /* Prateek Jain */
+            function myFunction() {
+                document.getElementById("myDropdown").classList.toggle("show");
+            }
+
+            // Close the dropdown if the user clicks outside of it
+            window.onclick = function(event) {
+                if (!event.target.matches('.dropbtn')) {
+
+                    var dropdowns = document.getElementsByClassName("dropdown-content");
+                    var i;
+                    for (i = 0; i < dropdowns.length; i++) {
+                        var openDropdown = dropdowns[i];
+                        if (openDropdown.classList.contains('show')) {
+                            openDropdown.classList.remove('show');
+                        }
+                    }
+                }
+            }
+            $(document).ready(function() {
+                
+                loadingImg();
+                userProfilePic();
+                listSetting();
+                initiateCheckBox();               
+            });
+          
+        </script>
+
+    </head>
+
+    <body onload="checkOnLoadParam(true)">
+        
+        <div class="lightLoader"  id="loader" onload="checkOnLoadParam(true)">
+            <img src="images/loader.gif" />
+
+        </div>
+        <div id="fadeLoader"></div> 
+        
+        <div id="main">
+            <!--LEFT PART/SECTION-->
+            <div id="main-left">
+                <div id="main-logo"><img src="images/setting-page-logo.png" width="166" height="63" alt=""/></div>
+                <ul>
+                    <li><a href="homePage.html">&#9733; Security Setting</a></li>
+                    <li><a href="viewActivity.html">&#9733; View Activity</a></li>
+                    <li><a href="alertSetting.html" class="active">&#9733; Alert Settings</a></li>
+                </ul> 
+            </div>
+            <!--LEFT PART/SECTION END-->
+
+            <!--RIGHT PART/SECTION-->
+            <div id="main-right">
+                <div id="main-right-header">
+
+
+
+                    <div id="main-user-seal"><img src="images/user.png"  width="56" height="55" alt=""/>
+                    </div>
+
+
+                    <div id="name-desig">Amit Kumar <br>
+                        <span>Software Developer</span>
+                    </div>
+                    <!--DROPDOWN SETTING BUTTON-->
+                    <div id="main-setting-icon"><img src="images/setting-con.png" width="29" height="27" alt="" onmouseover="this.src='images/setting-con-hover.png'" onmouseout="this.src='images/setting-con.png'" border="0" onclick="myFunction()" class="dropbtn"/>
+
+                        <div class="dropdown">
+                            <div id="myDropdown" class="dropdown-content">
+                               <a href="#" onclick="logout()">Logout</a>
+                                <a href="#about">Accounts</a>
+                                
+                            </div>
+                        </div>
+                        <!--DROPDOWN SETTING BUTTON END-->
+                    </div>
+                </div>
+
+                <div id="main-right-content-section">
+                    <h1>Alert Settings</h1>
+                    <!--              <span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</span>-->
+                </div>
+
+
+                <!--COL-->
+                <div id="pannels-main-setting">
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion">Login Alert From New Device </a>
+                                </h4>
+                                <div class="onoffswitch">
+                                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="chkLoginAlert" >
+                                    <label class="onoffswitch-label" for="chkLoginAlert">
+                                        <span class="onoffswitch-inner"></span>
+
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+<!--                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" >Change Password Alert</a>
+                                </h4>
+                                <div class="onoffswitch1">
+                                    <input type="checkbox" name="onoffswitch1" class="onoffswitch1-checkbox" id="chkChangePassword" >
+                                    <label class="onoffswitch1-label" for="chkChangePassword">
+                                        <span class="onoffswitch1-inner"></span>
+
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>-->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion">Profile Updation Alert</a>
+                                </h4>
+                                <div class="onoffswitch2">
+                                    <input type="checkbox" name="onoffswitch2" class="onoffswitch2-checkbox" id="chkProfileUpdationAlert" >
+                                    <label class="onoffswitch2-label" for="chkProfileUpdationAlert">
+                                        <span class="onoffswitch2-inner"></span>
+
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+
+<!--                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion">Hack Alert</a>
+                                </h4>
+                                <div class="onoffswitch3">
+                                    <input type="checkbox" name="onoffswitch3" class="onoffswitch3-checkbox" id="chkHackAlert" >
+                                    <label class="onoffswitch3-label" for="chkHackAlert">
+                                        <span class="onoffswitch3-inner"></span>
+
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion">Previous Password Alert</a>
+                                </h4>
+                                <div class="onoffswitch3">
+                                    <input type="checkbox" name="onoffswitch3" class="onoffswitch3-checkbox" id="chkPrevPassAlert" >
+                                    <label class="onoffswitch3-label" for="chkPrevPassAlert">
+                                        <span class="onoffswitch3-inner"></span>
+
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+                <!--COL END-->
+
+
+            </div>
+            <!--RIGHT PART/SECTION END-->
+            <div class="clear"></div>
+        </div>
+
+        <div id="main-setting-footer">Designed and Maintained by <a href="http://nkn.in" target="_blank">National Knowledge Network</a> | Powered by <a href="http://nic.in" target="_blank">National Informatics Centre</a></div>
+
+    </body>
+</html>

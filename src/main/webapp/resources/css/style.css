@@ -1,0 +1,154 @@
+@charset "utf-8";
+/* Prateek Jain, Shounak Acharya, Amit Kumar (National Knowledge Network | National Informatics Centre) */
+body {margin-left: 0px;	margin-top:0px;	margin-right: 0px;	margin-bottom: 0px;	background-image: url('../images/background.png');    background-repeat: no-repeat;    background-attachment: scroll; background-position: center; font-family:"Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif; font-size:13px;}
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-button {
+    width: 8px;
+    height:5px;
+}
+::-webkit-scrollbar-track {
+    background:#eee;
+    border: thin solid lightgray;
+    box-shadow: 0px 0px 3px #dfdfdf inset;
+    border-radius:10px;
+}
+::-webkit-scrollbar-thumb {
+    background:#999;
+    border: thin solid gray;
+    border-radius:10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background:#7d7d7d;
+}			
+
+
+@font-face {font-family: 'MyriadProRegular'; 
+            src: url('../fonts/myriadpro-regular.eot'); /* IE9 Compat Modes */
+            src: url('../fonts/myriadpro-regular.eot') format('embedded-opentype'), /* IE6-IE8 */
+                url('../fonts/myriadpro-regular.woff') format('woff'), /* Modern Browsers */
+                url('../fonts/myriadpro-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+                url('../fonts/myriadpro-regular.svg#MyriadProRegular') format('svg'); /* Legacy iOS */
+            font-weight: normal;
+            font-style: normal;}
+
+
+@font-face {
+    font-family: 'BlueHighwayDTypeRegular';
+    src: url('../fonts/bluehigd.eot');
+    src: url('../fonts/bluehigd.eot') format('embedded-opentype'),
+        url('../fonts/bluehigd.woff') format('woff'),
+        url('../fonts/bluehigd.ttf') format('truetype'),
+        url('../fonts/bluehigd.svg#BlueHighwayDTypeRegular') format('svg');
+}
+
+#clear {clear:both; height:5px;}
+#margin-cotainer { margin-top:250px;}
+#main-container {width: 850px; margin: 0 auto; margin-top:250px; margin-bottom:250px;}
+/*#logo {float:left; padding:15px; width:370px; margin-top: 30px; }*/
+#form-box { border:1px solid #ccc; background:#fbfbfb; box-shadow: 2px 2px 5px #888888; border-radius:3px; width: 400px; float:left; padding:12px; margin-top: 20px;}
+#nkn-logo {text-align:center; padding-top: 10px;}
+#forms { border:1px solid #ccc; background:#fbfbfb; border-radius:2px; padding:10px; margin-top: 15px;}
+#forms span a { font-size:13px; padding-top:10px; display:block; color:#017bd1; text-align:right; margin-right:5px; text-decoration:none; margin-left: 240px;}
+.form-input { width:96%; margin-bottom:5px; height:30px; padding:5px; border-radius:2px; border:1px solid #ccc; box-shadow: 2px 2px 4px #ccc; font-size:15px;}
+.submit-button { margin-top : 10px; margin-bottom : 10px; width:100%; padding:5px; height:40px; cursor:pointer; background: #3498db;
+                 background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+                 background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+                 background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+                 background-image: -o-linear-gradient(top, #3498db, #2980b9);
+                 background-image: linear-gradient(to bottom, #3498db, #2980b9);
+                 -webkit-border-radius: 3;
+                 -moz-border-radius: 3;
+                 border-radius:3px; font-weight:bold; color:#ffffff; box-shadow:2px 2px 4px #ccc;}
+
+.submit-button:disabled:hover{
+    background: #3498db;
+    background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+    background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+    background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+    background-image: -o-linear-gradient(top, #3498db, #2980b9);
+    background-image: linear-gradient(to bottom, #3498db, #2980b9);
+    opacity:0.5;
+}
+
+.submit-button:hover {
+    background: #3cb0fd;
+    background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+    text-decoration: none;}
+
+.input2 {height: 25px; border:1px solid #ccc; box-shadow: 2px 2px 4px #ccc; font-size:15px;  padding: 5px;    float: left; width: 50%;}
+.captcha img { height:24px; margin-left:5px;}
+.captcha1 {width: 12px;    float: right;    margin-right: 25px;    margin-top: -35px;}
+
+
+/*Image Seal ROUND Circle ;) Yeah Prateek*/
+
+/*#loading {width: 100px;  height: 100px;  margin: 10px auto;  position: relative;}*/
+.outer-shadow, .inner-shadow{  z-index: 4;  position: absolute;  width: 100%;  height: 100%;  border-radius: 100%;  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+.inner-shadow {top: 50%;  left: 50%;  width: 90px;  height: 90px;  margin-left: -45px;  margin-top: -45px;  border-radius: 100%;  background-color: #ffffff;
+               box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);}
+.inner-shadow img {border-radius: 50%; width: 90px;  height: 90px; margin-left: 0px; margin-top: 0px;} 
+.hold {  position: absolute;  width: 100%;  height: 100%;  clip: rect(0px, 100px, 100px, 50px);  border-radius: 100%; background-color: #fff;}
+.fill, .dot span {background-color: #65af1c;}
+.fill {position: absolute;  width: 100%;  height: 100%;  border-radius: 100%;  clip: rect(0px, 50px, 100px, 0px);}
+.left .fill {  z-index: 1;  -webkit-animation: left 1s linear ;  -moz-animation: left 1s linear ; animation: left 1s linear both;  }
+@keyframes left {0%{ -webkit-transform:rotate(0deg);}    
+100%{transform:rotate(180deg);}}
+@-webkit-keyframes left {0%{-webkit-transform:rotate(0deg);}    
+100%{-webkit-transform:rotate(180deg);}}
+.right {z-index: 3;  
+        -webkit-transform: rotate(180deg);  
+        -moz-transform: rotate(180deg); 
+        transform: rotate(180deg);}
+.right .fill {z-index: 3;  -webkit-animation: right 1s linear ;  -moz-animation: right 1s linear ;  animation: right 1s linear both ;  -webkit-animation-delay: 1s;  -moz-animation-delay: 1s;  animation-delay: 1s;}
+@keyframes right {0% {-webkit-transform:rotate(0deg);}    
+100%{transform:rotate(180deg);}}
+@-webkit-keyframes right {0% {transform: rotate(0deg);}  
+100% {transform: rotate(180deg);}}
+
+/*Image Seal ROUND Circle Close here. ;) Yeah Prateek*/
+
+.remember {width:450px; height:25px; float:left; line-height:25px; margin-top:5px; font-size:14px;}
+.checkbox {height:20px; width:20px; border-radius: 2px; vertical-align: middle;}
+
+
+.send-otp { width:50%; padding:5px; height:40px; cursor:pointer; background: #3498db;
+            background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+            background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+            background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+            background-image: -o-linear-gradient(top, #3498db, #2980b9);
+            background-image: linear-gradient(to bottom, #3498db, #2980b9);
+            -webkit-border-radius: 3;
+            -moz-border-radius: 3;
+            border-radius:3px; font-weight:bold; color:#ffffff; box-shadow:2px 2px 4px #ccc; float:left;}
+
+.send-otp:hover {
+    background: #3cb0fd;
+    background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+    text-decoration: none;}
+
+.options {width:100%; text-align:center; margin-top:10px; margin-bottom:10px;}
+
+.submit-button:disabled{
+    opacity: 0.5;
+    cursor: default;
+}
+
+
+
+
+
+
+
+/*for new settings page the style.css filee*/
+

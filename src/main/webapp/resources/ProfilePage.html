@@ -1,0 +1,664 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>NKN ONE</title>
+
+        <link href="css/profile-page.css" rel="stylesheet" type="text/css" />
+        <link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />
+        <link href="css/common.css" rel="stylesheet" type="text/css" />
+        <link href="images/favicon.ico" rel="shortcut" />
+        <script src="js/jquery-2.2.0.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="js/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/popup.js"></script>
+        <script src="js/validate.js" type="text/javascript"></script>
+        <script type="text/javascript" src="js/common.js"></script>
+        <script type="text/javascript" src="js/default.js"></script>
+        <style>
+
+
+            .ui-tooltip {
+                width: 210px;
+                border: 2px solid white;
+                border-radius: 5px;
+                color: white;
+                background: #101010;
+                /*                height: 25px;*/
+            }
+
+            .btn{
+                margin-left: 12px;
+                position: relative;
+            }
+
+            .glyphicon {
+                position: relative;
+                top: 1px;
+                display: inline-block;
+                font-family: 'Glyphicons Halflings';
+                font-style: normal;
+                font-weight: 400;
+                line-height: 1;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+
+            }
+
+            .glyphicon-pencil:before {
+                content: "\270f";
+
+
+            }
+
+            .dropdown{
+                margin-left: -5px !important;
+                margin-top:5px !important;
+            }
+
+            /*
+            .glyphicon-ok:before {
+                content: "\e013"
+            }
+            .form-control-feedback {
+                position: absolute;
+                top: 0;
+                right: 0;
+                z-index: 2;
+                display: block;
+                width: 34px;
+                height: 34px;
+                line-height: 34px;
+                text-align: center;
+                pointer-events: none
+            }*/
+
+
+            /*            .input{
+                            border: 1px solid green;
+                        }
+            */
+
+
+            /*            .has-success .form-control-feedback {
+                            color: #3c763d
+                        }
+                        .has-feedback {
+                            position: relative
+                        }
+                        .has-feedback .form-control {
+                            padding-right: 42.5px
+                        }
+                        .has-success .form-control {
+                            border-color: #3c763d;
+                            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+                            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075)
+                        }
+                        .has-success .form-control:focus {
+                            border-color: #2b542c;
+                            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #67b168;
+                            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #67b168
+                        }*/
+            /*            .form-group {
+                margin-bottom: 15px
+            }*/
+
+
+        </style>
+                <script>
+            $(window).load(function () {
+                history.pushState(null, null, document.URL);
+                window.addEventListener('popstate', function () {
+                    history.pushState(null, null, document.URL);
+                });
+            });
+        </script>
+        <script>
+            $(function() {
+
+                console.log(getQueryParams("action")[0]); 
+
+                //        $(".disabledInput").removeAttr('disabled');
+
+
+                //getting all departments of user institute
+                loadDepartment();
+                $(".editButton").hide();
+                $("#importAccount").hide();
+                $("#orDiv").hide();
+                $("#phonePrimary").removeClass('input');
+                if(getQueryParams("action")[0]=="update")
+                {
+                    
+                    //hide password
+                    
+                    $("#divPassword").hide();
+                    
+                    var browserId = LoadFromLocalStorage("deviceId");
+                    // getting setting if change password otp is enabled or not
+                    var  userName = LoadFromLocalStorage("userName");
+                    var sessionId = LoadFromLocalStorage("sessionId");
+                    
+                    //show loading 
+                    loadingImg();
+                    
+                    $.ajax({
+                        //url:"/NKNOne/openam/SecurityView/checkAndSendCode?userName=" + userName +"&realm=users&service=Accounts&settingName=" + "profileUpdateOtp" + "&browserID=" + browserId,
+                        url:"/Accounts/openam/SecurityView/checkAndSendCode?userName=" + userName +"&realm=users&service=Accounts&settingName=" + "profileUpdateOtp" + "&browserID=" + browserId + "&sessionId=" + sessionId,
+                        type:"POST",
+                        success: function(result,status,xhr) {
+                      
+                            var data = JSON.parse(result);
+                            console.log("----"+data.status);
+                            if(data.status=="success"&&data.enabled=="true"){
+                                $("#divOTP").show();
+                            }
+                            else
+                            {
+                                $("#divOTP").hide();
+                            }
+            
+                            // fill all fields of profile page from database
+                            FillForm();
+                            $(".disabledInput").attr('disabled',true); // disabled all input fields when page loads for upadte profile
+                            $(".sealborder").attr('disabled',true); 
+                            $(".sealborder").css('opacity',0.5);
+                            $(".sendOtpAndVerify").hide();
+                            $(".editButton").show();
+                            $("#importAccount").show();
+                            $("#orDiv").show();
+                            //22nd june******************
+                            $("#submit").val("Update");
+                        }      //success ends
+          
+                    });        //ajax call ends                         
+                    
+                    
+                    
+                }
+
+               
+                //tooltip
+                //                var tooltips = $( "[title]" ).tooltip({
+                //                    //                    position: {
+                //                    //                        my: "right top",
+                //                    //                        at: "right+5 top-5"
+                //                    //                    }
+                //                });
+
+            });
+            
+            //            var isP_Mobile={field:"",status:false};
+            //            var isS_Mobile={field:"",status:false};
+            //            var isP_Email={field:"",status:false};
+            //            var isS_Email={field:"",status:false};
+
+
+            var isP_Mobile;
+            var isS_Mobile;
+            var isP_Email;
+            var isS_Email;
+
+            
+            function sendOtpAndVerify(divToShow,divToHide,currentCase, fieldName, txtRequiredValue)
+            {
+                
+                if($("#" + txtRequiredValue).val()=="")
+                {
+                    alert("Please enter value for verification");
+                    return;
+                }
+            
+            
+
+                $("#tick" + txtRequiredValue).hide();
+
+                var browserId = LoadFromLocalStorage("deviceId");
+                var userName = LoadFromLocalStorage("userName");
+                var sessionId = LoadFromLocalStorage("sessionId");
+
+                $("#" + txtRequiredValue).attr("disabled","disabled");
+
+                if(getQueryParams("action")[0]=="update"){
+                    currentCase="proileUpdateOTPOnPrimaryPhone";
+                    txtRequiredValue="phonePrimary";
+                    fieldName="primaryPhone";
+                }
+
+                var requiredValue=$("#" + txtRequiredValue).val();
+                
+                
+                SaveInLocalStorage("currentCaseForVerification", currentCase);
+
+                //change text of anchor tad clicked to "Sending OTP..."
+
+                $("#" + divToHide).html("Sending OTP...");
+                
+
+                //sending otp to verify
+                    
+                $.ajax({
+                    
+                    url:"/Accounts/openam/profile/new/checkAndSendCode?userName=" + userName +"&realm=users&service=Accounts&currentCase=" + currentCase + "&" + fieldName + "=" + requiredValue + "&browserID=" + browserId+"&sessionId=" + sessionId,
+                    type:"POST",
+                    success: function(result,status,xhr) {
+                      
+                        var data = JSON.parse(result);
+                        
+                        if(data.status=="success"){
+                            alert("Otp Sent");
+                        }
+                        else
+                        {
+                            alert("Error!!! Please resend OTP");
+                        }
+                        
+                        //hide sendOtpAndVerify and show otp textbox and verify my number button
+                        $("#" + divToShow).show("slow");
+                        $("#" + divToHide).hide();
+                        
+
+                    }      //success ends
+                    ,error : function(result,status,xhr) {
+                        $("#" + divToHide).html("Send OTP and verify");
+                        alert("Error!!! Please send OTP again");
+                    }
+          
+                });        //ajax call ends                         
+                    
+            }
+            
+            function verifyWithOTP(txtUserOTP,divToHide,divToShow,txt)
+            {
+                
+                var browserId = LoadFromLocalStorage("deviceId");
+                var userName = LoadFromLocalStorage("userName");
+                var sessionId = LoadFromLocalStorage("sessionId");
+                
+                var userOTP = $("#" + txtUserOTP).val();
+                
+                var fieldType = ""; //codePhone or codeEmail
+                
+                var currentCaseForVerification = LoadFromLocalStorage("currentCaseForVerification");
+                
+                if(currentCaseForVerification.indexOf("Phone") != -1)
+                    fieldType="codePhone";
+                else
+                    fieldType="codeEmail";
+                    
+                
+                //verifying details with OTP
+                
+                $.ajax({
+                    
+                    url:"/Accounts/openam/profile/new/verifyCode?userName=" + userName +"&realm=users&service=Accounts&currentCase=" + currentCaseForVerification + "&" + fieldType + "=" + userOTP + "&browserID=" + browserId+"&sessionId=" + sessionId,
+                    type:"POST",
+                    success: function(result,status,xhr) {
+                      
+                        var data = JSON.parse(result);
+                        
+                        if(data.status=="success"){
+                            $("#" + divToShow).html("Send OTP and verify");
+                            $("#" + divToShow).show("slow");
+                            $("#" + divToHide).hide();
+                            $("#tick" + txt).show("slow");
+                            
+                            $("#" + txt).removeAttr("disabled");
+                            
+                            
+                            //removeErrorArray(field);
+                            
+                            if(txtUserOTP=="txtOTPPMobile")
+                            {
+                                isP_Mobile=true;
+                                removeErrorArray("phonePrimary");
+                                showError();
+                            }
+                            else if(txtUserOTP=="txtOTPSMobile")
+                            {
+                                isS_Mobile=true;
+                                removeErrorArray("phoneSecondary");
+                                showError();
+                            }
+                            else if(txtUserOTP=="txtOTPPEmail")
+                            {
+                                isP_Email=true;
+                                removeErrorArray("emailPrimary");
+                                showError();
+                            }
+                            else if(txtUserOTP=="txtOTPSEmail")
+                            {
+                                isS_Email=true;
+                                removeErrorArray("emailSecondary");
+                                showError();
+                            }
+                        }
+                        else
+                        {
+                            $("#" + txtUserOTP).val("");
+                            alert("Error!!! Please verify OTP again");
+                        }
+
+                    }      //success ends
+          
+                });        //ajax call ends                   
+            }
+
+            function enableInput(id,obj){
+                
+                $(obj).attr("disabled","disabled");
+                
+                switch (id) {
+                    case "phonePrimary" :
+                        alert("Contact your subadmin to update primary phone number");
+                        //return;
+                    
+                        //$("#sendOtpPMobile").show();
+                        break;
+                    case "phoneSecondary" :
+                        $("#sendOtpSMobile").show();
+                        break;
+                    case "emailPrimary" :
+                        $("#sendOtpPEmail").show();
+                        break;
+                    case "emailSecondary" :
+                        $("#sendOtpSEmail").show();
+                        break;
+                    case "sealborder" :
+                        $("." + id).show();
+                        $("." + id).css('opacity',1);
+                        $("#txtSeal").removeAttr('disabled');
+                        break;
+                    default:
+                        break;
+                }
+            
+                if(id!="phonePrimary")
+                    $("#" + id).removeAttr('disabled');
+            }
+          
+        </script>
+    </head>
+    <body onload="onLoadGetDeviceId(false);checkOnLoadParam(true);">
+
+        <div class="lightLoader"  id="loader">
+            <img src="images/loader.gif" />
+
+        </div>
+        <div id="fadeLoader"></div> 
+
+        <header>
+            <div id="header">
+                <img src="images/logo1.png" width="120" height="101" alt=""/> 
+                <!--<h1>We keep your personal information <span>private and safe â€“ and put you in control.</span></h1>-->
+            </div>
+        </header>
+
+        <div id="container">
+
+
+            <div class="light" id="divErrorPopup">
+                <div id="forms">
+                    <div id="spanErrorMsg"></div>
+                    <input type="button" class="submit-button" value="Ok" onClick="lightbox_close()" >
+
+                </div>
+
+            </div>
+            <div id="fade" onClick="lightbox_close();"></div> 
+
+
+
+            <h2>Please Enter Details Below</h2>
+
+            <form class="box" id="form">
+                <div style="float: right"><a href="#" onclick="logout()">Logout</a></div>
+                <br>
+                <div class="alert alert-danger fade in" id="divError" style="display: none">
+                    <!--                <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">Ã—</a>-->
+                    <div id="msgError"></div>
+                </div>
+                <div>
+                    <label class="control-label styleLabel" for="firstname">First Name <span class="red">* </span> </label> 
+                    <span class="editButton glyphicon glyphicon-pencil" onclick="enableInput('firstName',this)"></span>
+                    <label id="labellastName" class="control-label styleLabel" for="lastname" style="padding-left: 97px;">Last Name <span class="red">*</span> </label>
+                    <span class="editButton glyphicon glyphicon-pencil" onclick="enableInput('lastName',this)"></span><br>
+
+                    <input type="text" class=" firstname disabledInput" onblur="checkFirstName();showError()" name="firstName" placeholder="First Name" id="firstName"> 
+                    <input type="text" class="lastname disabledInput"  onblur="checkLastName();showError()" name="lastName" placeholder="Last Name" id="lastName">
+                </div>
+                <!--                </div>-->
+                <div class=" form-group has-success has-feedback">
+                    <fieldset class="fieldset styleLabel" id="areaSeal" style="margin-top: 9px;">
+                        <legend>Primary Mobile <span class="red">* </span>
+                            <span class="editButton glyphicon glyphicon-pencil" onclick="enableInput('phonePrimary',this)"></span>
+                        </legend>
+
+                        <!--                    <label class="control-label styleLabel " for="primaryPhone" id="labelphonePrimary"><br>Primary Mobile</label>-->
+                        <input type="number" class="text  disabledInput input" oninput="maxLengthCheck(this)" onblur="checkPhonePrimary();showError()" placeholder="Primary Mobile" name="phonePrimary" maxlength="10" id="phonePrimary">
+                        <span id="spanPhonePrimary"></span>
+                        <div>
+                            <table id="tblVerifyPMobile" class="tblVerifyOTP">
+                                <tr>
+                                    <td><input type="text" class="text"  placeholder="OTP*" id="txtOTPPMobile" ></td>
+                                    <td><input type="button" id="verifynum" class="submit-button" style="height:38px;margin-bottom: 3px" value="Verify" onclick="verifyWithOTP('txtOTPPMobile','tblVerifyPMobile','sendOtpPMobile','phonePrimary')" /></td>
+                                    <td><input type="button" id="verifynum" class="submit-button" style="height:38px;margin-bottom: 3px" value="Resend" onclick="sendOtpAndVerify('tblVerifyPMobile','sendOtpPMobile','proileCreateOTPOnPrimaryPhone','primaryPhone','phonePrimary','txtOTPPMobile')" /></td>
+                                </tr>
+                            </table>
+                            <a href="javascript:void(0)" id="sendOtpPMobile" class="sendOtpAndVerify" onclick="sendOtpAndVerify('tblVerifyPMobile','sendOtpPMobile','proileCreateOTPOnPrimaryPhone','primaryPhone','phonePrimary','txtOTPPMobile')">Send OTP and verify</a>
+                            <span class="tickButton glyphicon glyphicon-ok" id="tickphonePrimary" style="display: none">&#10004;</span>
+                            <div id="clear"></div>
+                        </div>
+                    </fieldset>
+                </div>
+
+
+
+
+
+                <div>
+                    <fieldset class="fieldset styleLabel" id="areaSeal" style="margin-top: 9px;">
+                        <legend>Secondary Mobile <span class="editButton glyphicon glyphicon-pencil" onclick="enableInput('phoneSecondary',this)"></span></legend>
+                        <!--                    <label class="control-label styleLabel" for="secondaryPhone" id="labelphoneSecondary">Secondary Mobile</label>-->
+                        <input type="number" class="text disabledInput" placeholder="Secondary Mobile" oninput="maxLengthCheck(this)" onblur="checkPhoneSecondary();showError()" name="phoneSecondary" maxlength="10" id="phoneSecondary">
+
+                        <div>
+                            <table id="tblVerifySMobile" class="tblVerifyOTP" >
+                                <tr>
+                                    <td><input type="text" class="text"  placeholder="OTP" id="txtOTPSMobile"></td>
+                                    <td><input type="button" id="verifynumSPhone" class="submit-button" style="height:38px;margin-bottom: 3px" value="Verify" onclick="verifyWithOTP('txtOTPSMobile','tblVerifySMobile','sendOtpSMobile','phoneSecondary')" /></td>
+                                    <td><input type="button" id="verifynumSPhone" class="submit-button" style="height:38px;margin-bottom: 3px" value="Resend" onclick="sendOtpAndVerify('tblVerifySMobile','sendOtpSMobile','proileCreateOTPOnSecondaryPhone','secondaryPhone','phoneSecondary','txtOTPSMobile')" /></td>
+                                </tr></table>
+
+                            <a href="javascript:void(0)" id="sendOtpSMobile" class="sendOtpAndVerify" onclick="sendOtpAndVerify('tblVerifySMobile','sendOtpSMobile','proileCreateOTPOnSecondaryPhone','secondaryPhone','phoneSecondary','txtOTPSMobile')">Send OTP and verify</a>
+
+                            <span class="tickButton glyphicon glyphicon-ok" id="tickphoneSecondary" style="display: none">&#10004;</span>
+
+
+                            <!--                            <input type="button" id="sendOtpSPhone" class="btn btn-default " value="Send Otp and verify number"  onclick="sendOtpAndVerifySPhone()"/>-->
+
+                            <div id="clear"></div>
+                        </div>
+                    </fieldset>
+                </div>
+
+
+                <div>
+
+                    <fieldset class="fieldset styleLabel" id="areaSeal" style="margin-top: 9px;">
+                        <legend>Primary Email <span class="red">*</span> <span class="editButton glyphicon glyphicon-pencil" onclick="enableInput('emailPrimary',this)"></span></legend>
+                        <!--                    <label class="control-label styleLabel" for="primaryEmail" id="labelemailPrimary"><br>Primary Email</label>-->
+                        <input type="text" class="text disabledInput" onblur="checkEmailPrimary();showError()" placeholder="Primary Email*" name="emailPrimary" id="emailPrimary">
+
+                        <div>
+
+                            <table id="tblVerifyPEmail"  class="tblVerifyOTP" >
+                                <tr>
+                                    <td><input type="text" class="text"  placeholder="OTP" id="txtOTPPEmail"></td>
+                                    <td><input type="button" id="verifynumPEmail" class="submit-button" style="height:38px;margin-bottom: 3px" value="Verify" onclick="verifyWithOTP('txtOTPPEmail','tblVerifyPEmail','sendOtpPEmail','emailPrimary')" /></td>
+                                    <td><input type="button" id="verifynumPEmail" class="submit-button" style="height:38px;margin-bottom: 3px" value="Resend" onclick="sendOtpAndVerify('tblVerifyPEmail','sendOtpPEmail','proileCreateOTPOnPrimaryEmail','primaryEmail','emailPrimary','txtOTPPEmail')" /></td>
+                                </tr></table>
+
+                            <a href="javascript:void(0)" id="sendOtpPEmail" class="sendOtpAndVerify" onclick="sendOtpAndVerify('tblVerifyPEmail','sendOtpPEmail','proileCreateOTPOnPrimaryEmail','primaryEmail','emailPrimary','txtOTPPEmail')">Send OTP and verify</a>
+                            <span class="tickButton glyphicon glyphicon-ok" id="tickemailPrimary" style="display: none">&#10004;</span>
+                            <!--                    <input type="button" id="sendOtpPEmail" class="btn btn-default  " value="Send Otp and verify Email"  onclick="sendOtpAndVerifyPEmail()"/>-->
+                            <div id="clear"></div>
+                        </div>
+                    </fieldset>
+                </div>
+
+
+
+                <div>
+
+                    <fieldset class="fieldset styleLabel" id="areaSeal" style="margin-top: 9px;">
+                        <legend>Secondary Email <span class="editButton glyphicon glyphicon-pencil" onclick="enableInput('emailSecondary',this)"></span></legend>
+
+                        <!--                    <label class="control-label styleLabel" for="secondaryEmail" id="labelemailSecondary">Secondary Email</label>-->
+                        <input type="text" class="text disabledInput" onblur="checkEmailSecondary();showError()" placeholder="Secondary Email"  name="emailSecondary" id="emailSecondary">
+                        <div>
+                            <table id="tblVerifySEmail" class="tblVerifyOTP">
+                                <tr>
+                                    <td><input type="text" class="text"  placeholder="OTP" id="txtOTPSEmail">
+                                    </td>
+                                    <td><input type="button" id="verifynumSEmail" class="submit-button" style="height:38px;margin-bottom: 3px" value="Verify" onclick="verifyWithOTP('txtOTPSEmail','tblVerifySEmail','sendOtpSEmail','emailSecondary')" />
+                                    <td><input type="button" id="verifynumSEmail" class="submit-button" style="height:38px;margin-bottom: 3px" value="Resend" onclick="sendOtpAndVerify('tblVerifySEmail','sendOtpSEmail','proileCreateOTPOnSecondaryEmail','secondaryEmail','emailSecondary','txtOTPSEmail')" />
+                                    </td>
+                                </tr></table>
+
+                            <a href="javascript:void(0)" id="sendOtpSEmail" class="sendOtpAndVerify" onclick="sendOtpAndVerify('tblVerifySEmail','sendOtpSEmail','proileCreateOTPOnSecondaryEmail','secondaryEmail','emailSecondary','txtOTPSEmail')">Send OTP and verify</a>
+                            <span class="tickButton glyphicon glyphicon-ok" id="tickemailSecondary" style="display: none">&#10004;</span>
+
+                            <!--                            <input type="button" id="sendOtpSEmail" class="btn btn-default " value="Send Otp and verify Email"  onclick="sendOtpAndVerifySEmail()"/>-->
+
+                            <div id="clear"></div>
+                        </div>
+                    </fieldset>
+                </div>
+
+
+                <div>
+                    <label class="control-label styleLabel" for="dob" id="labeldob">Date Of Birth <span class="red">* </span><span class="editButton glyphicon glyphicon-pencil" onclick="enableInput('dob',this)"></span></label>
+                    <input class="text  disabledInput" type="text" onfocus="(this.type='date')" name="dob" onblur="this.type='text';checkDOB();showError()"  placeholder="Date Of Birth*"  id="dob">
+                </div>
+                <br>
+                <div>
+                    <label class="control-label styleLabel" for="selectGender" id="labelgender">Select Gender <span class="red">* </span><span class="editButton glyphicon glyphicon-pencil" onclick="enableInput('gender',this)"></span></label>
+                    <select class="text dropdown disabledInput" onblur="checkGender();showError()" onchange="checkGender();showError()" name="gender" id="gender">
+                        <option value="0"  selected="selected"> select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female"> Female</option>
+                    </select>
+
+                </div>
+                <br>
+<!--                commented on 8th feb to remove field graddate-->
+                <div>
+                    <label class="control-label styleLabel" for="dob" id="labelgraduationDate">Graduation Date <span class="editButton glyphicon glyphicon-pencil" onclick="enableInput('graduationDate',this)"></span></label>
+                    <input class="text disabledInput " type="text" onfocus="(this.type='date')" name="gradDate" onblur="this.type='text';"  placeholder="Graduation Date" id="graduationDate">
+                </div>
+                <br>
+                <div>
+                    <label class="control-label styleLabel" for="selectDepartment" >Select Department <span class="red">* </span><span class="editButton glyphicon glyphicon-pencil" onclick="enableInput('department',this)"></span></label>
+                    <select class="text dropdown disabledInput" onblur="checkDepartment();showError()" onchange="loadDesignation(this);checkDepartment();showError()" name="department" id="department">
+                        <option value="0"> select Department</option>
+                    </select>
+
+                </div>
+                <br>
+                <div>
+                    <label class="control-label styleLabel" for="selectDesignation">Select Designation <span class="red">* </span><span class="editButton glyphicon glyphicon-pencil" onclick="enableInput('designation',this)"></span></label>
+                    <select class="text dropdown disabledInput" onblur="checkDesignation();showError()" onchange="checkDesignation();showError()" name="designationid" id="designation" >
+                        <option value="0">select Designation</option>
+                    </select>
+                </div>
+
+
+                <br>
+                <div>
+                    <label class="control-label styleLabel" >Employee Id / Roll No <span class="red">* </span> <span class="editButton glyphicon glyphicon-pencil" onclick="enableInput('empId',this)"></span></label>
+                    <input type="text" name="empid" onblur="checkEmpId();showError()" class="disabledInput text" placeholder="Employee Id / Roll No" id="empId" >
+                </div>
+                <br>
+
+                <div id="divOTP" style="display: none">
+                    <label class="control-label styleLabel" >OTP <span class="red">*</span></label>
+                    <input class="text" type="text" name="otp" placeholder="Enter OTP" id="otp" >    
+                </div>
+
+
+                <br>                
+
+                <div id="divPassword">
+                    <div>
+                        <label class="control-label styleLabel" >Password <span class="red">* </span></label>
+                        <input type="password" name="passPrefix" oninput="maxLengthCheck(this)" onblur="chkPassword();showError()" class="text" maxlength="6" placeholder="Password Prefix* - enter only 6 character" id="password" >
+                    </div>
+                    <br>
+                    <div>
+                        <label class="control-label styleLabel" >Confirm Password <span class="red">*</span></label>
+                        <input type="password" class="text" onblur="checkConfirmPassword();showError()" oninput="maxLengthCheck(this)" placeholder="Confirm Password Prefix*" id="confirmpassword" maxlength="6">
+                    </div>
+
+                </div>
+                <!--                <button type="button" class="btn btn-default btn-xs hideEditButton">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                
+                                </button>-->
+                <div>
+                    <fieldset class="fieldset styleLabel" id="areaSeal" style="margin-top: 9px;">
+                        <legend>Profile Pic <span class="editButton glyphicon glyphicon-pencil" onclick="enableInput('profileImg',this)"></span></legend>
+                        <!--                    <label class="control-label styleLabel" for="image" id="labelprofileImg"><br>Profile Pic</label><br>-->
+                        <input type="file" style="margin-top: 10px" accept="image/*" class="disabledInput" id="profileImg" name="picofnknuser">
+                    </fieldset>
+
+                </div>
+
+                <fieldset class="fieldset styleLabel" id="areaSeal" style="margin-top: 9px;">
+                    <legend>Select Seal <span class="red">* </span><span class="editButton glyphicon glyphicon-pencil" onclick="enableInput('sealborder',this)"></span></legend>
+                    <div id="sealborder" class="sealborder"> <input type="radio" name="seal"> <img src="seal/1.jpg" width="50" height="50" alt="" style="vertical-align:middle;"/></div>
+                    <div id="sealborder" class="sealborder"> <input type="radio" name="seal"> <img src="seal/2.jpg" width="50" height="50" alt="" style="vertical-align:middle;"/></div>
+                    <div id="sealborder" class="sealborder">  <input type="radio" name="seal"> <img src="seal/3.jpeg" width="50" height="50" alt="" style="vertical-align:middle;"/></div>
+                    <div id="sealborder" class="sealborder">   <input type="radio" name="seal"> <img src="seal/4.jpg" width="50" height="50" alt="" style="vertical-align:middle;"/></div>
+                    <div id="sealborder" class="sealborder">  <input type="radio" name="seal"> <img src="seal/5.jpg" width="50" height="50" alt="" style="vertical-align:middle;"/></div>
+                    <div id="sealborder" class="sealborder">   <input type="radio" name="seal"> <img src="seal/6.jpg" width="50" height="50" alt="" style="vertical-align:middle;"/></div>
+                    <div id="sealborder" class="sealborder">  <input type="radio" name="seal"> <img src="seal/7.jpg" width="50" height="50" alt="" style="vertical-align:middle;"/></div>
+                    <div id="sealborder" class="sealborder">   <input type="radio" name="seal"> <img src="seal/8.JPG" width="50" height="50" alt="" style="vertical-align:middle;"/></div>
+                    <div id="sealborder" class="sealborder">   <input type="radio" name="seal"> <img src="seal/9.jpg" width="50" height="50" alt="" style="vertical-align:middle;"/></div>
+                    <div id="sealborder" class="sealborder">    <input type="radio" name="seal"> <img src="seal/10.JPG" width="50" height="50" alt="" style="vertical-align:middle;"/></div>
+                    <div class="clear"></div>
+
+                    <div style="text-align: center;padding: 20px;font-weight: bold; text-align: center"> OR </div>
+                    <div class="clear"></div>
+                    <input type="text" class="text disabledInput" id="txtSeal" name="" placeholder="Type your own custom message for seal">
+
+                </fieldset>   
+
+
+                <input type="button" class="submit-button" id="submit" onclick="createProfile()" value="Submit">
+                <img src="images/loader.gif" id="divLoading" style="display: none">
+                <div class="else" id="orDiv">Or</div>
+                <input type="button" class="import-button" value="Import Your Previous Account" onclick="lightbox_open();" id="importAccount" >   
+
+
+                <div class="light" id="popUpMigrate">
+                    <div id="forms">
+                        <a href="#" class="close" onClick="lightbox_close();"><img src="images/close.png" width="20" height="20" alt=""/></a>
+                        <input type="text" class="form-input" id="oldUsername" placeholder="username">
+                        <input type="password" class="form-input" id="oldPassword" placeholder="Password">
+                        <input type="button" class="submit-button" value="Submit" onClick="migrateUser()" >
+                        <span><a href="#">Need Help?</a></span>
+                    </div>
+
+                </div>
+                <div id="fade" onClick="lightbox_close();"></div> 
+                <!--lightbox-->
+                <span><a href="#">Need Help?</a></span>
+            </form>
+        </div>
+
+        <footer>
+            <div id="footer">Designed and Maintained by <a href="http://nkn.in" target="_blank">National Knowledge Network</a>  | Powered by <a href="http://nic.in" target="_blank">National Informatics Centre</a></div>
+        </footer>
+
+    </body>
+</html>
